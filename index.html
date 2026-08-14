@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#020914">
+  <meta name="description" content="Ha•Kou NerdOS — Open-Source Home Mining System para ESP32 DevKit e ESP32-C3.">
+  <meta property="og:title" content="Ha•Kou NerdOS">
+  <meta property="og:description" content="Open-Source Home Mining System">
+  <title>Ha•Kou NerdOS — Open-Source Home Mining System</title>
+  <link rel="stylesheet" href="css/style.css?v=official1">
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+  <div class="space" aria-hidden="true">
+    <div class="starfield starfield-a"></div>
+    <div class="starfield starfield-b"></div>
+    <div class="nebula nebula-a"></div>
+    <div class="nebula nebula-b"></div>
+    <div class="planet-glow"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#home" aria-label="Ha•Kou NerdOS">
+        <span class="brand-main">Ha<span>•</span>Kou</span>
+        <span class="brand-os">NerdOS</span>
+        <small>OPEN-SOURCE HOME MINING SYSTEM</small>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="mainNav" class="main-nav" aria-label="Navegação principal">
+        <a href="#home">Home</a>
+        <a href="#system">NerdOS</a>
+        <a href="#fleet">Fleet</a>
+        <a href="#hardware">Hardware</a>
+        <a href="#case">Case</a>
+        <a href="#chappi">Chappī</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> ESP32 · OPEN SOURCE · HOME MINING</div>
+        <h1><span>Ha•Kou</span><br>NerdOS</h1>
+        <h2>SMALL POWER. BIG FUTURE.</h2>
+        <p>
+          Transforme ESP32 DevKit e ESP32-C3 em pequenos mineradores com uma interface criada para observar, configurar e gerenciar o seu laboratório doméstico.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#system">Explorar NerdOS</a>
+          <a class="btn btn-ghost" href="#hardware">Ver Hardware</a>
+        </div>
+        <div class="hero-tags">
+          <span>Dashboard</span><span>Fleet</span><span>Config</span><span>OTA</span><span>Pool</span>
+        </div>
+      </div>
+
+      <div class="hero-chappi" aria-label="Chappī">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="holo-floor"></div>
+        <img src="assets/images/chappi-official.png" alt="Chappī, o alien cinza oficial do Ha•Kou NerdOS">
+      </div>
+
+      <div class="hero-dashboard tech-panel">
+        <div class="panel-topline">
+          <div><strong>Ha•Kou NerdOS</strong><span>Interface real do sistema</span></div>
+          <span class="status-pill"><i></i> REAL UI</span>
+        </div>
+        <img class="dashboard-real" src="assets/images/nerdos-home.png" alt="Tela Home real do Ha•Kou NerdOS">
+        <div class="panel-foot">Hashrate · Wi‑Fi · Temperatura · Shares · Uptime · Pool</div>
+      </div>
+    </section>
+
+    <section class="system-strip shell" id="system">
+      <article class="mini-card">
+        <span class="icon">◉</span><div><h3>Home</h3><p>Visão principal do minerador e do estado do sistema.</p></div>
+      </article>
+      <article class="mini-card" id="fleet">
+        <span class="icon">▦</span><div><h3>Fleet</h3><p>Visualização de múltiplos dispositivos Ha•Kou na rede.</p></div>
+      </article>
+      <article class="mini-card">
+        <span class="icon">⚙</span><div><h3>Config</h3><p>Pool, porta, worker e demais parâmetros do minerador.</p></div>
+      </article>
+      <article class="mini-card">
+        <span class="icon">⇧</span><div><h3>OTA</h3><p>Atualização do firmware diretamente pela interface do NerdOS.</p></div>
+      </article>
+      <article class="mini-card">
+        <span class="icon">↗</span><div><h3>Pool</h3><p>Atalho para abrir a página da pool configurada.</p></div>
+      </article>
+    </section>
+
+    <section class="section shell">
+      <div class="section-heading">
+        <div><span class="kicker">INTERFACE REAL</span><h2>O NerdOS como ele realmente é.</h2></div>
+        <p>Sem telemetria inventada: os painéis abaixo usam screenshots reais do projeto.</p>
+      </div>
+
+      <div class="ui-showcase tech-panel">
+        <div class="ui-tabs" role="tablist" aria-label="Telas do NerdOS">
+          <button class="ui-tab active" data-target="ui-home" role="tab">Home</button>
+          <button class="ui-tab" data-target="ui-fleet" role="tab">Fleet</button>
+          <button class="ui-tab" data-target="ui-config" role="tab">Config</button>
+          <button class="ui-tab" data-target="ui-ota" role="tab">OTA</button>
+        </div>
+        <div class="ui-stage">
+          <img id="ui-home" class="ui-shot active" src="assets/images/nerdos-home.png" alt="Dashboard Home do NerdOS">
+          <img id="ui-fleet" class="ui-shot" src="assets/images/nerdos-fleet.png" alt="Tela Fleet do NerdOS">
+          <img id="ui-config" class="ui-shot" src="assets/images/nerdos-config.png" alt="Tela de configuração do NerdOS">
+          <img id="ui-ota" class="ui-shot" src="assets/images/nerdos-ota.png" alt="Tela OTA do NerdOS">
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="hardware">
+      <div class="section-heading">
+        <div><span class="kicker">HARDWARE SUPORTADO</span><h2>Pequeno hardware. Projeto de verdade.</h2></div>
+        <p>As placas abaixo são as referências reais usadas no projeto.</p>
+      </div>
+
+      <div class="hardware-grid">
+        <article class="hardware-card tech-panel">
+          <div class="hardware-photo"><img src="assets/images/esp32-devkit.png" alt="ESP32 DevKit"></div>
+          <div>
+            <span class="chip-label">DEVKIT</span>
+            <h3>ESP32 DevKit</h3>
+            <p>A plataforma clássica do Ha•Kou NerdOS, usada no desenvolvimento e nas instalações domésticas do projeto.</p>
+          </div>
+        </article>
+
+        <article class="hardware-card tech-panel">
+          <div class="hardware-photo"><img src="assets/images/esp32-c3.png" alt="ESP32-C3 Super Mini"></div>
+          <div>
+            <span class="chip-label purple">COMPACT</span>
+            <h3>ESP32-C3 Super Mini</h3>
+            <p>A versão compacta do projeto, com a mesma filosofia de configuração e monitoramento do NerdOS.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell case-section" id="case">
+      <div class="case-copy">
+        <span class="kicker">EM DESENVOLVIMENTO</span>
+        <h2>Ha•Kou NerdOS Case</h2>
+        <p>
+          Um case dedicado para ESP32 DevKit está sendo lapidado para transformar a placa em um pequeno produto Ha•Kou: acesso a USB, BOOT/RESET e ventilação, com montagem simples para uma instalação doméstica organizada.
+        </p>
+        <div class="case-pills"><span>USB</span><span>BOOT / RESET</span><span>Ventilação</span><span>Impressão 3D</span></div>
+      </div>
+      <div class="case-photo tech-panel"><img src="assets/images/nerdos-case.jpg" alt="Conceito do case Ha•Kou NerdOS"></div>
+    </section>
+
+    <section class="section shell chappi-section" id="chappi">
+      <div class="chappi-copy">
+        <span class="kicker">MEET チャッピー</span>
+        <h2>Chappī não apareceu depois do produto.</h2>
+        <p>
+          O alien cinza representa a colaboração que ajudou a transformar a ideia do Ha•Kou NerdOS em um sistema funcionando. Por isso ele faz parte da identidade do projeto — futurista, tecnológico e NERD.
+        </p>
+        <blockquote>Humano + IA construindo, testando e aprendendo juntos.</blockquote>
+      </div>
+      <div class="chappi-card tech-panel">
+        <div class="chappi-glow"></div>
+        <img src="assets/images/chappi-official.png" alt="Chappī">
+      </div>
+    </section>
+
+    <section class="section shell open-source">
+      <div class="open-inner tech-panel">
+        <div>
+          <span class="kicker">OPEN SOURCE</span>
+          <h2>Construído para ser estudado, usado e melhorado.</h2>
+          <p>O repositório público e os downloads oficiais serão ligados aqui conforme a publicação do projeto for concluída.</p>
+        </div>
+        <a class="btn btn-ghost disabled" href="#" aria-disabled="true">GitHub · em breve</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div class="footer-brand"><strong>Ha<span>•</span>Kou NerdOS</strong><small>OPEN-SOURCE HOME MINING SYSTEM</small></div>
+      <div class="footer-center">小さな力で、未来を掘る。</div>
+      <div>SMALL POWER. BIG FUTURE.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=official1"></script>
+</body>
+</html>
