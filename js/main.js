@@ -52,18 +52,74 @@ document.addEventListener("DOMContentLoaded",()=>{
  // Real UI tabs
  qsa(".ui-tab").forEach(tab=>tab.addEventListener("click",()=>{qsa(".ui-tab").forEach(x=>x.classList.remove("active"));qsa(".ui-shot").forEach(x=>x.classList.remove("active"));tab.classList.add("active");qs("#"+tab.dataset.target).classList.add("active")}));
 
- // Demo telemetry
- let shares=184,seconds=8048;
- const stream=qs("#shareStream"),bars=qs("#tempBars");
- for(let i=0;i<32;i++){const d=document.createElement("span");d.className="share-dot"+(i%17===0?" reject":"");stream.appendChild(d)}
- for(let i=0;i<32;i++){const b=document.createElement("i");b.style.height=(46+Math.random()*40)+"px";bars.appendChild(b)}
- setInterval(()=>{
-   const now=new Date();qs("#demoClock").textContent=now.toLocaleTimeString([], {hour12:false});
-   const hash=(349+Math.random()*8).toFixed(1),temp=(62.8+Math.random()*2.1).toFixed(1),wifi=Math.round(-50-Math.random()*12);
-   qs("#demoHash").textContent=hash;qs("#demoTemp").textContent=temp;qs("#demoWifi").textContent=wifi;
-   seconds++;const h=String(Math.floor(seconds/3600)).padStart(2,"0"),m=String(Math.floor(seconds%3600/60)).padStart(2,"0"),s=String(seconds%60).padStart(2,"0");qs("#demoUptime").textContent=`${h}:${m}:${s}`;
-   if(Math.random()>.58){shares++;qs("#demoShares").textContent=shares;const d=document.createElement("span");d.className="share-dot"+(Math.random()<.03?" reject":"");stream.appendChild(d);if(stream.children.length>55)stream.removeChild(stream.firstChild)}
- },1100);
+ // Real NerdOS demo interactions
+ qsa("[data-jump-demo]").forEach(btn=>btn.addEventListener("click",()=>{const target=btn.dataset.jumpDemo;const tab=qs(`.demo-tab[data-demo="${target}"]`);if(tab)tab.click()}));
+
+ qsa("[data-device-action]").forEach(btn=>btn.addEventListener("click",()=>{
+   const action=btn.dataset.deviceAction,feedback=qs("#fleetFeedback");
+   if(action==="identify"){
+     feedback.textContent="✓ IDENTIFY: selected Ha•Kou device would identify itself on the local network.";
+     feedback.className="fleet-action-feedback ok-feedback";
+   }else if(action==="config"){
+     feedback.textContent="Opening Configuration for HaKouTest01…";
+     setTimeout(()=>qs('.demo-tab[data-demo="config"]').click(),450);
+   }else if(action==="ota"){
+     feedback.textContent="Opening OTA for HaKouTest01…";
+     setTimeout(()=>qs('.demo-tab[data-demo="ota"]').click(),450);
+   }else{
+     feedback.textContent="↻ RESTART simulated. No hardware was restarted.";
+     feedback.className="fleet-action-feedback warn-feedback";
+   }
+ }));
+
+ qs("#fakeConfigSave").addEventListener("click",()=>{
+   const st=qs("#configStatus");
+   st.textContent="✓ Configuration flow simulated — nothing was written to hardware.";
+   st.style.color="var(--green)";
+   setTimeout(()=>{st.textContent="Demo only — nothing is written to hardware.";st.style.color=""},3200)
+ });
+
+ // Store preview — quantities, remove and clear cart
+ const cart = {};
+ const productNames = ["ESP32 DevKit","ESP32-C3","NerdOS Case"];
+
+ function cartTotalQty(){return Object.values(cart).reduce((a,b)=>a+b,0)}
+ function renderCart(){
+   const total=cartTotalQty(),lines=qs("#cartLines");
+   qs("#cartCount").textContent=`${total} item${total===1?"":"s"}`;
+   qs("#clearCart").disabled=total===0;
+   lines.innerHTML="";
+   if(!total){
+     const e=document.createElement("div");e.className="cart-empty";e.textContent="Nothing added yet.";lines.appendChild(e);
+   }else{
+     productNames.forEach(name=>{
+       const qty=cart[name]||0;if(!qty)return;
+       const row=document.createElement("div");row.className="cart-line";
+       row.innerHTML=`<b>${name}</b><div class="cart-line-actions"><button type="button" data-cart-minus="${name}">−</button><span>${qty}</span><button type="button" data-cart-plus="${name}">+</button><button type="button" class="cart-remove" data-cart-remove="${name}">REMOVE</button></div>`;
+       lines.appendChild(row);
+     });
+   }
+   productNames.forEach(name=>{
+     const qty=cart[name]||0,add=qs(`.store-action[data-product="${name}"]`),control=qs(`[data-qty-for="${name}"]`),val=qs(`[data-qty-value="${name}"]`);
+     if(add){add.hidden=qty>0;add.classList.toggle("added",qty>0)}
+     if(control)control.hidden=qty===0;
+     if(val)val.textContent=qty||1;
+   });
+ }
+
+ function setQty(name,qty){if(qty<=0)delete cart[name];else cart[name]=Math.min(qty,99);renderCart()}
+ qsa(".store-action").forEach(btn=>btn.addEventListener("click",()=>setQty(btn.dataset.product,1)));
+ qsa("[data-qty-plus]").forEach(btn=>btn.addEventListener("click",()=>setQty(btn.dataset.qtyPlus,(cart[btn.dataset.qtyPlus]||0)+1)));
+ qsa("[data-qty-minus]").forEach(btn=>btn.addEventListener("click",()=>setQty(btn.dataset.qtyMinus,(cart[btn.dataset.qtyMinus]||0)-1)));
+ qsa("[data-remove-product]").forEach(btn=>btn.addEventListener("click",()=>setQty(btn.dataset.removeProduct,0)));
+ qs("#clearCart").addEventListener("click",()=>{Object.keys(cart).forEach(k=>delete cart[k]);renderCart()});
+ qs("#cartLines").addEventListener("click",e=>{
+   const p=e.target.dataset.cartPlus,m=e.target.dataset.cartMinus,r=e.target.dataset.cartRemove;
+   if(p)setQty(p,(cart[p]||0)+1);
+   if(m)setQty(m,(cart[m]||0)-1);
+   if(r)setQty(r,0);
+ });
+ renderCart();
 
  // OTA demo
  qs("#fakeOta").addEventListener("click",()=>{let p=0,bar=qs("#otaProgress"),status=qs("#otaStatus");bar.style.width="0%";status.textContent="Simulating update...";const t=setInterval(()=>{p+=Math.ceil(Math.random()*12);if(p>=100){p=100;clearInterval(t);status.textContent="Demo update complete — no firmware was changed."}bar.style.width=p+"%"},150)});

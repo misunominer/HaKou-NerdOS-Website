@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#030914">
   <meta name="description" content="Ha•Kou NerdOS — Open-Source Home Mining System for ESP32.">
   <title>Ha•Kou NerdOS — Open-Source Home Mining System</title>
-  <link rel="stylesheet" href="css/style.css?v=v5">
+  <link rel="stylesheet" href="css/style.css?v=v6">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -31,6 +31,7 @@
         <a href="#hardware" data-i18n="navHardware">Hardware</a>
         <a href="#case" data-i18n="navCase">Case</a>
         <a href="#chappi">Chappī</a>
+        <a href="#store">Store</a>
         <label class="lang-control"><span>文/A</span>
           <select id="langSelect" aria-label="Language">
             <option value="en">EN</option><option value="pt">PT</option><option value="ja">日本語</option>
@@ -47,12 +48,13 @@
           <span class="eyebrow"><span class="live-dot"></span><span data-i18n="heroEyebrow">ESP32 · OPEN SOURCE · HOME MINING</span></span>
           <h1><span>Ha•Kou</span><br>NerdOS</h1>
           <h2 data-i18n="heroTag">Small power. Big future.</h2>
+          <div class="hero-positioning" data-i18n="heroPositioning">NERDMINER, REIMAGINED — A WEBUI-FIRST HOME MINING EXPERIENCE.</div>
           <p data-i18n="heroText">An open-source system that turns ESP32 boards into home mining nodes with a real dashboard, captive setup, fleet tools and OTA updates.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#demo" data-i18n="tryDemo">TRY LIVE DEMO</a>
             <a class="btn btn-ghost" href="#setup" data-i18n="seeSetup">SEE SETUP FLOW</a>
           </div>
-          <div class="system-line"><span>● NERDOS ONLINE</span><span>ESP32 READY</span><span>OPEN SOURCE</span></div>
+          <div class="system-line"><span>MINING</span><span>WEBUI</span><span>FLEET</span><span>CONFIG</span><span>OTA</span></div>
         </div>
         <div class="hero-chappi" id="heroChappi" role="button" tabindex="0" aria-label="Chappī">
           <div class="hero-chappi-grid"></div><div class="hero-chappi-glow"></div>
@@ -111,16 +113,17 @@
 
     <section class="section shell" id="demo">
       <div class="section-heading">
-        <div><span class="kicker">INTERACTIVE DEMO</span><h2 data-i18n="demoTitle">See NerdOS operating before you install it.</h2></div>
-        <p data-i18n="demoText">A simulated dashboard with fictitious telemetry. It reproduces the feel of the system without connecting to a real miner, wallet or pool.</p>
+        <div><span class="kicker">INTERACTIVE DEMO · REAL NERDOS UI</span><h2 data-i18n="demoTitle">Use the NerdOS interface before you install it.</h2></div>
+        <p>This demo is built from the <b>actual Ha•Kou NerdOS screens</b>. The website adds interaction around them; it does not invent a second dashboard.</p>
       </div>
 
-      <div class="demo-shell tech-panel">
+      <div class="real-demo-shell tech-panel">
         <div class="demo-topbar">
-          <div><span class="live-dot"></span><b>Ha•Kou NerdOS</b><small id="demoClock">--:--:--</small></div>
-          <span class="demo-badge" data-i18n="simulated">SIMULATED DATA</span>
+          <div><span class="live-dot"></span><b>Ha•Kou NerdOS</b><small>INTERACTIVE WEBSITE DEMO</small></div>
+          <span class="demo-badge">REAL UI · DEMO ACTIONS</span>
         </div>
-        <div class="demo-tabs" role="tablist">
+
+        <div class="demo-tabs real-demo-tabs" role="tablist">
           <button class="demo-tab active" data-demo="home">HOME</button>
           <button class="demo-tab" data-demo="fleet">FLEET</button>
           <button class="demo-tab" data-demo="config">CONFIG</button>
@@ -128,67 +131,65 @@
           <button class="demo-tab" data-demo="pool">POOL ↗</button>
         </div>
 
-        <div class="demo-view active" id="demo-home">
-          <div class="metric-grid">
-            <article><small>HASHRATE</small><strong id="demoHash">352.4</strong><span>kH/s</span></article>
-            <article><small>SHARES</small><strong id="demoShares">184</strong><span id="demoAccepted">98.9% accepted</span></article>
-            <article><small>TEMP</small><strong id="demoTemp">63.8</strong><span>°C</span></article>
-            <article><small>WI‑FI</small><strong id="demoWifi">-54</strong><span>dBm</span></article>
+        <div class="demo-view active real-demo-view" id="demo-home">
+          <div class="real-screen-wrap">
+            <img src="assets/images/nerdos-home.png" alt="Actual Ha•Kou NerdOS Home dashboard">
+            <div class="screen-caption"><b>HOME</b><span>Actual NerdOS dashboard screen</span></div>
           </div>
-          <div class="demo-columns">
-            <div class="demo-panel">
-              <div class="demo-panel-head"><b>SHARE DATA STREAM</b><span>LIVE</span></div>
-              <div class="share-stream" id="shareStream"></div>
+          <div class="demo-action-strip">
+            <button type="button" data-jump-demo="fleet">OPEN FLEET</button>
+            <button type="button" data-jump-demo="config">CONFIGURE</button>
+            <button type="button" data-jump-demo="ota">OTA UPDATE</button>
+          </div>
+        </div>
+
+        <div class="demo-view real-demo-view" id="demo-fleet">
+          <div class="real-screen-wrap">
+            <img src="assets/images/nerdos-fleet.png" alt="Actual Ha•Kou NerdOS Fleet dashboard">
+            <div class="screen-caption"><b>FLEET</b><span>Actual NerdOS Fleet screen</span></div>
+          </div>
+          <div class="fleet-demo-actions">
+            <div class="fleet-demo-device active" data-worker="HaKouTest01">
+              <div><small>SELECTED DEVICE</small><b>HaKouTest01</b><span>192.168.1.82 · ONLINE</span></div>
+              <div class="device-actions">
+                <button type="button" data-device-action="identify">IDENTIFY</button>
+                <button type="button" data-device-action="config">CONFIG</button>
+                <button type="button" data-device-action="ota">OTA</button>
+                <button type="button" data-device-action="restart" class="danger-soft">RESTART</button>
+              </div>
             </div>
-            <div class="demo-panel">
-              <div class="demo-panel-head"><b>MINER STATUS</b><span>ONLINE</span></div>
-              <dl class="status-list">
-                <div><dt>Pool</dt><dd>eu.digi.examplepool.io:3337</dd></div>
-                <div><dt>Worker</dt><dd>Worker01</dd></div>
-                <div><dt>Uptime</dt><dd id="demoUptime">02:14:08</dd></div>
-                <div><dt>Firmware</dt><dd>v2.3.3-beta</dd></div>
-              </dl>
-            </div>
-          </div>
-          <div class="history-strip">
-            <div class="history-head"><b>TEMPERATURE HISTORY</b><span>LAST 60 MIN</span></div>
-            <div class="temp-bars" id="tempBars"></div>
+            <div class="fleet-action-feedback" id="fleetFeedback">Select an action to experience the NerdOS Fleet workflow.</div>
           </div>
         </div>
 
-        <div class="demo-view" id="demo-fleet">
-          <div class="fleet-demo-grid">
-            <article><span class="online-dot"></span><b>Worker01</b><strong>353.1 kH/s</strong><small>63.6°C · -52 dBm</small></article>
-            <article><span class="online-dot"></span><b>Worker02</b><strong>348.8 kH/s</strong><small>62.9°C · -58 dBm</small></article>
-            <article><span class="online-dot"></span><b>Worker03</b><strong>355.0 kH/s</strong><small>64.1°C · -55 dBm</small></article>
-            <article><span class="online-dot warn"></span><b>C3-Lab</b><strong>257.4 kH/s</strong><small>65.2°C · -67 dBm</small></article>
+        <div class="demo-view real-demo-view" id="demo-config">
+          <div class="real-screen-wrap">
+            <img src="assets/images/nerdos-config.png" alt="Actual Ha•Kou NerdOS Configuration screen">
+            <div class="screen-caption"><b>CONFIG</b><span>Actual NerdOS Configuration screen</span></div>
           </div>
-          <p class="demo-disclaimer" data-i18n="demoFiction">All names, addresses and telemetry in this demo are fictitious.</p>
-        </div>
-
-        <div class="demo-view" id="demo-config">
-          <div class="fake-form">
-            <label><span>Pool address</span><input readonly value="eu.digi.examplepool.io"></label>
-            <div><label><span>Port</span><input readonly value="3337"></label><label><span>Password / Diff</span><input readonly value="d=0.01"></label></div>
-            <label><span>Wallet / Worker</span><input readonly value="DExampleWallet.Worker01"></label>
-            <button type="button">SAVE & RESTART</button>
+          <div class="demo-action-strip">
+            <button type="button" id="fakeConfigSave">SIMULATE SAVE & RESTART</button>
+            <span id="configStatus" class="demo-action-status">Demo only — nothing is written to hardware.</span>
           </div>
         </div>
 
-        <div class="demo-view" id="demo-ota">
-          <div class="ota-demo">
-            <span class="ota-icon">↑</span><h3>OTA Firmware Update</h3><p>Select a compiled firmware <b>.bin</b> and update NerdOS through the browser.</p>
-            <div class="ota-file"><span>HaKou-NerdOS-v2.3.3.bin</span><b>READY</b></div>
-            <button type="button" id="fakeOta">START DEMO UPDATE</button>
-            <div class="ota-progress"><i id="otaProgress"></i></div><small id="otaStatus">Demo only. No firmware will be uploaded.</small>
+        <div class="demo-view real-demo-view" id="demo-ota">
+          <div class="real-screen-wrap">
+            <img src="assets/images/nerdos-ota.png" alt="Actual Ha•Kou NerdOS OTA screen">
+            <div class="screen-caption"><b>OTA</b><span>Actual NerdOS OTA screen</span></div>
+          </div>
+          <div class="ota-inline-demo">
+            <button type="button" id="fakeOta">SIMULATE OTA UPDATE</button>
+            <div class="ota-progress"><i id="otaProgress"></i></div>
+            <small id="otaStatus">Demo only. No firmware will be uploaded.</small>
           </div>
         </div>
 
-        <div class="demo-view" id="demo-pool">
+        <div class="demo-view real-demo-view" id="demo-pool">
           <div class="pool-demo-view">
-            <span class="pool-big">↗</span><h3 data-i18n="poolDemoTitle">Pool shortcut follows the user's configuration.</h3>
-            <p data-i18n="poolDemoText">In the real NerdOS, this action opens the website corresponding to the configured pool. The public website demo does not force or recommend a specific pool.</p>
-            <div class="pool-example"><small>CONFIGURED STRATUM</small><strong>eu.digi.examplepool.io:3337</strong><span>→ examplepool.io</span></div>
+            <span class="pool-big">↗</span><h3>Pool follows the miner configuration.</h3>
+            <p>In NerdOS, the Pool shortcut follows what the user configured. The public website does not force or recommend a specific pool.</p>
+            <div class="pool-example"><small>EXAMPLE ONLY</small><strong>configured-pool.example:3337</strong><span>→ pool website</span></div>
           </div>
         </div>
       </div>
@@ -238,6 +239,48 @@
       <button class="case-photo tech-panel image-button" data-lightbox="assets/images/nerdos-case.jpg"><img src="assets/images/nerdos-case.jpg" alt="Ha•Kou NerdOS case concept"></button>
     </section>
 
+    <section class="section shell" id="store">
+      <div class="section-heading">
+        <div><span class="kicker">HA•KOU STORE / PREVIEW</span><h2>From the demo to your desk.</h2></div>
+        <p>Hardware and accessories for the Ha•Kou NerdOS ecosystem. Store controls are interactive; checkout remains disabled until pricing, stock, shipping and payment are finalized.</p>
+      </div>
+      <div class="store-grid">
+        <article class="store-card tech-panel" data-product-card="ESP32 DevKit">
+          <img src="assets/images/esp32-devkit.png" alt="ESP32 DevKit"><span>NERDOS READY</span><h3>ESP32 DevKit</h3><p>Reference hardware for Ha•Kou NerdOS home mining.</p>
+          <div class="product-controls">
+            <button class="store-action" data-product="ESP32 DevKit">ADD TO CART</button>
+            <div class="qty-control" data-qty-for="ESP32 DevKit" hidden><button type="button" data-qty-minus="ESP32 DevKit">−</button><b data-qty-value="ESP32 DevKit">1</b><button type="button" data-qty-plus="ESP32 DevKit">+</button><button type="button" class="remove-product" data-remove-product="ESP32 DevKit">REMOVE</button></div>
+          </div>
+        </article>
+        <article class="store-card tech-panel" data-product-card="ESP32-C3">
+          <img src="assets/images/esp32-c3.png" alt="ESP32-C3"><span>COMPACT</span><h3>ESP32-C3</h3><p>Compact NerdOS hardware for smaller installations.</p>
+          <div class="product-controls">
+            <button class="store-action" data-product="ESP32-C3">ADD TO CART</button>
+            <div class="qty-control" data-qty-for="ESP32-C3" hidden><button type="button" data-qty-minus="ESP32-C3">−</button><b data-qty-value="ESP32-C3">1</b><button type="button" data-qty-plus="ESP32-C3">+</button><button type="button" class="remove-product" data-remove-product="ESP32-C3">REMOVE</button></div>
+          </div>
+        </article>
+        <article class="store-card tech-panel" data-product-card="NerdOS Case">
+          <img src="assets/images/nerdos-case.jpg" alt="Ha•Kou NerdOS Case"><span>IN DEVELOPMENT</span><h3>Ha•Kou NerdOS Case</h3><p>Dedicated enclosure with practical access and ventilation.</p>
+          <div class="product-controls">
+            <button class="store-action" data-product="NerdOS Case">ADD TO CART</button>
+            <div class="qty-control" data-qty-for="NerdOS Case" hidden><button type="button" data-qty-minus="NerdOS Case">−</button><b data-qty-value="NerdOS Case">1</b><button type="button" data-qty-plus="NerdOS Case">+</button><button type="button" class="remove-product" data-remove-product="NerdOS Case">REMOVE</button></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="cart-panel tech-panel" id="cartPanel">
+        <div class="cart-panel-head">
+          <div><small>DEMO CART</small><b id="cartCount">0 items</b></div>
+          <button type="button" id="clearCart" disabled>CLEAR CART</button>
+        </div>
+        <div class="cart-lines" id="cartLines"><div class="cart-empty">Nothing added yet.</div></div>
+        <div class="cart-panel-foot">
+          <span>Prices and checkout will be enabled only after products, stock, shipping and payment are finalized.</span>
+          <button type="button" id="checkoutDemo" disabled>CHECKOUT · COMING SOON</button>
+        </div>
+      </div>
+    </section>
+
     <section class="section shell chappi-section" id="chappi">
       <div class="chappi-copy"><span class="kicker">MEET チャッピー</span><h2 data-i18n="chappiTitle">Chappī is the presence behind the system.</h2><p data-i18n="chappiText">The official gray alien represents the human + AI collaboration behind Ha•Kou. Its visual language stays technical, futuristic and aimed at adult technology enthusiasts.</p><blockquote data-i18n="quote">Human + AI building, testing and learning together.</blockquote></div>
       <div class="chappi-card tech-panel"><div class="chappi-card-grid"></div><div class="chappi-card-glow"></div><div class="chappi-card-clip"><img src="assets/images/chappi-official.png" alt="Chappī"></div><span>CHAPPĪ / チャッピー</span></div>
@@ -247,6 +290,6 @@
   <footer class="site-footer"><div class="shell footer-inner"><div><strong>Ha•Kou NerdOS</strong><small data-i18n="footerLine">Open-Source Home Mining System</small></div><a href="#top" data-i18n="backTop">Back to top ↑</a></div></footer>
 
   <div class="lightbox" id="lightbox" hidden><button class="lightbox-close" id="lightboxClose">×</button><img id="lightboxImage" alt="Expanded NerdOS screenshot"></div>
-  <script src="js/main.js?v=v5"></script>
+  <script src="js/main.js?v=v6.1"></script>
 </body>
 </html>

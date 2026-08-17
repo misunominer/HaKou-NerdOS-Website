@@ -37,3 +37,195 @@
  .hero-main{grid-template-columns:minmax(0,1fr) 34%;min-height:455px}.hero-copy{padding-left:18px}.hero-copy>p{max-width:92%}.hero-chappi{width:43%}.hero-chappi-clip{inset:105px -62px 0 -35px}.hero-chappi img{width:255px}.hero-chappi-tag{display:none}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+/* v6 — product-first interactive layer */
+.hero-positioning{margin:16px 0 0;color:#eaf7ff;font-size:12px;font-weight:900;letter-spacing:1.35px;line-height:1.5}.share-log{height:76px;overflow:hidden;margin-top:14px;padding:10px;border:1px solid rgba(54,131,185,.2);border-radius:10px;background:#030b15;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:9px;color:#8fb2cc}.share-log div{display:flex;gap:10px;padding:2px 0}.share-log time{color:#6689a5}.share-log .ok{color:var(--green)}.share-log .bad{color:#ff6b82}.fleet-node{cursor:pointer;transition:.18s ease}.fleet-node:hover,.fleet-node.active{transform:translateY(-2px);border-color:rgba(43,215,255,.65)!important;box-shadow:0 10px 30px rgba(0,0,0,.22),inset 0 0 28px rgba(43,215,255,.035)}.fleet-detail{margin-top:12px;padding:14px;display:grid;grid-template-columns:auto 1fr 1fr auto;align-items:center;gap:12px}.fleet-detail small{color:#6f91ad}.fleet-detail span{color:#8fb0c9}.fleet-detail button,.store-action{border:1px solid rgba(43,215,255,.4);background:rgba(43,215,255,.08);color:#e9f9ff;border-radius:9px;padding:10px 12px;font-weight:900;cursor:pointer}.demo-action-status{color:#6f91ad}.store-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.store-card{padding:18px;display:flex;flex-direction:column;min-height:390px;transition:.2s ease}.store-card:hover{transform:translateY(-5px);border-color:rgba(43,215,255,.48)}.store-card img{width:100%;height:190px;object-fit:contain;border-radius:12px;background:rgba(3,11,21,.55)}.store-card>span{margin-top:14px;color:var(--cyan2);font-size:9px;letter-spacing:1.3px;font-weight:900}.store-card h3{margin:8px 0 4px}.store-card p{color:var(--muted);line-height:1.55;flex:1}.store-action.added{color:var(--green);border-color:rgba(77,237,165,.45);background:rgba(77,237,165,.08)}.cart-bar{margin-top:14px;padding:14px 16px;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center}.cart-bar small{display:block;color:#6f91ad}.cart-bar span{color:#9db9ce;font-size:11px}.cart-bar button{border:1px solid rgba(255,138,50,.28);background:rgba(255,138,50,.06);color:#b99b7d;border-radius:9px;padding:11px 13px;font-weight:900}
+@media(max-width:800px){.store-grid{grid-template-columns:1fr}.fleet-detail,.cart-bar{grid-template-columns:1fr}.store-card{min-height:0}.store-card img{height:160px}}
+
+
+/* v6.1 — real NerdOS demo, full Chappī, usable cart */
+.hero-main{min-height:610px}
+.hero-chappi{overflow:hidden}
+.hero-chappi-clip{
+  inset:0!important;
+  padding:24px 18px 18px 10px;
+  display:flex;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:visible!important;
+}
+.hero-chappi img{
+  width:auto!important;
+  max-width:100%!important;
+  max-height:555px!important;
+  height:auto!important;
+  object-fit:contain;
+  object-position:center;
+}
+.hero-chappi-glow{top:23%}
+.hero-chappi-tag{z-index:5}
+
+.real-demo-shell{overflow:hidden}
+.real-demo-tabs{border-bottom:1px solid rgba(57,139,196,.28)}
+.real-demo-view{padding:14px}
+.real-screen-wrap{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(43,215,255,.28);
+  border-radius:14px;
+  background:#020a13;
+}
+.real-screen-wrap img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  background:#020a13;
+}
+.screen-caption{
+  position:absolute;
+  left:12px;
+  bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 10px;
+  border:1px solid rgba(43,215,255,.28);
+  border-radius:9px;
+  background:rgba(2,9,18,.88);
+  backdrop-filter:blur(8px);
+  box-shadow:0 8px 24px rgba(0,0,0,.3);
+}
+.screen-caption b{font-size:10px;letter-spacing:1.3px;color:var(--cyan2)}
+.screen-caption span{font-size:9px;color:#8ca9bf}
+.demo-action-strip,.ota-inline-demo{
+  margin-top:12px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex-wrap:wrap;
+}
+.demo-action-strip button,.ota-inline-demo button,.device-actions button{
+  border:1px solid rgba(43,215,255,.36);
+  background:rgba(43,215,255,.07);
+  color:#eaf8ff;
+  border-radius:8px;
+  padding:10px 12px;
+  font-size:10px;
+  font-weight:900;
+  cursor:pointer;
+}
+.fleet-demo-actions{margin-top:12px}
+.fleet-demo-device{
+  padding:14px;
+  border:1px solid rgba(43,215,255,.28);
+  border-radius:12px;
+  background:rgba(5,17,30,.75);
+  display:grid;
+  grid-template-columns:minmax(220px,1fr) auto;
+  gap:14px;
+  align-items:center;
+}
+.fleet-demo-device>div:first-child{display:flex;flex-direction:column;gap:4px}
+.fleet-demo-device small{font-size:8px;color:var(--cyan2);letter-spacing:1.2px}
+.fleet-demo-device span{font-size:10px;color:#8faabd}
+.device-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.device-actions .danger-soft{border-color:rgba(255,92,116,.35);color:#ff9aaa;background:rgba(255,92,116,.06)}
+.fleet-action-feedback{margin-top:8px;padding:10px 12px;border-radius:9px;background:#06111e;color:#829eb4;font-size:10px}
+.ok-feedback{color:var(--green);border:1px solid rgba(77,237,165,.2)}
+.warn-feedback{color:#ffc477;border:1px solid rgba(255,164,67,.2)}
+.ota-inline-demo .ota-progress{flex:1;min-width:160px}
+
+.product-controls{margin-top:auto}
+.qty-control{
+  display:grid;
+  grid-template-columns:42px 48px 42px 1fr;
+  gap:7px;
+  align-items:center;
+}
+.qty-control button,.cart-panel button{
+  min-height:38px;
+  border:1px solid rgba(43,215,255,.35);
+  background:rgba(43,215,255,.06);
+  color:#e9f8ff;
+  border-radius:8px;
+  font-weight:900;
+  cursor:pointer;
+}
+.qty-control b{
+  display:grid;
+  place-items:center;
+  height:38px;
+  border:1px solid rgba(70,112,147,.3);
+  border-radius:8px;
+  background:#06111d;
+}
+.qty-control .remove-product,.cart-remove{border-color:rgba(255,91,112,.32)!important;color:#ff9baa!important;background:rgba(255,91,112,.05)!important}
+
+.cart-panel{margin-top:14px;padding:16px}
+.cart-panel-head,.cart-panel-foot{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+.cart-panel-head small{display:block;color:#6e8ca5}
+.cart-panel-head button{padding:8px 10px;font-size:9px}
+.cart-panel-head button:disabled{opacity:.35;cursor:not-allowed}
+.cart-lines{margin:13px 0;border-top:1px solid rgba(67,116,153,.25)}
+.cart-empty{padding:16px 0;color:#738fa5;font-size:11px}
+.cart-line{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:11px 0;
+  border-bottom:1px solid rgba(67,116,153,.2);
+}
+.cart-line b{font-size:11px}
+.cart-line-actions{display:flex;align-items:center;gap:6px}
+.cart-line-actions button{min-width:34px;padding:7px 9px;font-size:9px}
+.cart-line-actions span{min-width:28px;text-align:center;font-weight:900}
+.cart-panel-foot span{font-size:9px;color:#758fa4;max-width:640px}
+.cart-panel-foot button{padding:11px 13px;color:#a9896b;border-color:rgba(255,140,53,.25);background:rgba(255,140,53,.05)}
+
+.chappi-card{
+  min-height:570px!important;
+  overflow:hidden;
+}
+.chappi-card-clip{
+  inset:0!important;
+  padding:20px 18px 45px!important;
+  overflow:visible!important;
+  align-items:center!important;
+}
+.chappi-card img{
+  width:auto!important;
+  max-width:100%!important;
+  max-height:500px!important;
+  height:auto!important;
+  object-fit:contain;
+}
+.chappi-card>span{z-index:5}
+
+@media(max-width:980px){
+  .hero-main{min-height:560px}
+  .hero-chappi img{max-height:500px!important}
+}
+@media(max-width:800px){
+  .hero-main{min-height:520px}
+  .hero-chappi-clip{padding:45px 0 12px!important}
+  .hero-chappi img{max-height:410px!important;max-width:120%!important}
+  .fleet-demo-device{grid-template-columns:1fr}
+  .device-actions{justify-content:flex-start}
+  .cart-panel-head,.cart-panel-foot,.cart-line{align-items:flex-start;flex-direction:column}
+  .cart-line-actions{width:100%;flex-wrap:wrap}
+  .chappi-card{min-height:500px!important}
+  .chappi-card img{max-height:430px!important}
+}
+@media(max-width:560px){
+  .hero-main{min-height:500px}
+  .hero-chappi{width:43%!important}
+  .hero-chappi img{max-height:360px!important}
+  .screen-caption{position:static;border:0;border-radius:0}
+  .qty-control{grid-template-columns:40px 45px 40px 1fr}
+}
