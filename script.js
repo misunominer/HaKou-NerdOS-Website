@@ -27,3 +27,29 @@ const io=new IntersectionObserver(entries=>{
   });
 },{rootMargin:"-35% 0px -55% 0px",threshold:0});
 sections.forEach(s=>io.observe(s));
+
+// Mobile menu
+const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+const mobileMenu = document.querySelector(".mobile-menu");
+
+if (mobileMenuToggle && mobileMenu) {
+  const closeMobileMenu = () => {
+    mobileMenu.classList.remove("open");
+    mobileMenuToggle.setAttribute("aria-expanded", "false");
+  };
+
+  mobileMenuToggle.addEventListener("click", () => {
+    const willOpen = !mobileMenu.classList.contains("open");
+    mobileMenu.classList.toggle("open", willOpen);
+    mobileMenuToggle.setAttribute("aria-expanded", String(willOpen));
+  });
+
+  mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMobileMenu);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) closeMobileMenu();
+  });
+}
+

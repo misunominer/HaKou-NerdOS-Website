@@ -128,6 +128,102 @@ button {
   color: #ffffff;
 }
 
+
+/* Mobile navigation */
+.mobile-menu-toggle,
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu-toggle {
+  justify-self: end;
+  width: 42px;
+  height: 42px;
+  padding: 9px;
+  border: 1px solid #24425d;
+  border-radius: 10px;
+  background: rgba(5, 16, 29, 0.82);
+  cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 4px 0;
+  border-radius: 2px;
+  background: #dcecff;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 14px 24px 18px;
+  border-top: 1px solid rgba(71, 116, 153, .28);
+  border-bottom: 1px solid rgba(71, 116, 153, .28);
+  background: rgba(3, 7, 18, .97);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, .35);
+}
+
+.mobile-menu.open {
+  display: block;
+}
+
+.mobile-nav {
+  display: grid;
+  gap: 2px;
+}
+
+.mobile-nav a {
+  display: block;
+  padding: 12px 4px;
+  color: #d8e8f7;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(71, 116, 153, .18);
+}
+
+.mobile-nav a:hover {
+  color: var(--cyan);
+}
+
+.mobile-languages {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 14px;
+}
+
+.mobile-languages button {
+  border: 1px solid #24425d;
+  background: transparent;
+  color: #9cabba;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mobile-languages button.active,
+.mobile-languages button:hover {
+  background: rgba(8, 124, 255, .25);
+  color: #fff;
+}
+
 /* Hero Section */
 .hero {
   position: relative;
@@ -669,8 +765,12 @@ button {
 @media (max-width: 768px) {
     --head: 70px;
     .brand img { width: 170px; }
+    .header-inner {
+      grid-template-columns: 1fr auto;
+      padding: 0 18px;
+    }
     .main-nav, .languages { display: none; }
-    /* Adicionar um menu mobile hambúrguer se necessário */
+    .mobile-menu-toggle { display: block; }
 
     .hero h1 { font-size: 48px; }
     .hero h2 { font-size: 24px; }
