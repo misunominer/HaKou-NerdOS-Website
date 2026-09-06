@@ -1,51 +1,1403 @@
-/* Ha•Kou NerdOS — Official Integration v1 */
-:root{
-  --bg:#020914;--bg2:#04111f;--panel:rgba(6,22,40,.76);--panel2:rgba(5,17,31,.9);
-  --cyan:#16d5ff;--cyan2:#00a8ff;--blue:#2356ff;--violet:#734bff;--green:#41ecae;
-  --white:#f7f9ff;--muted:#91a9c2;--line:rgba(42,149,220,.28);--line2:rgba(42,149,220,.5);
-  --shadow:0 24px 80px rgba(0,0,0,.44);
+:root {
+  --bg: #020812;
+  --bg-section: #030b17;
+  --text: #f6f8fb;
+  --muted: #8ba0b3;
+  --blue: #0076ff;
+  --cyan: #00e0ff;
+  --line: #1c3653;
+  --max: 1600px;
+  --max-container: 1400px;
+  --head: 100px;
+  --blue-grad: linear-gradient(135deg, #10afff, #087cff);
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--white);background:linear-gradient(180deg,#010712,#030d1a 44%,#020914);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;overflow-x:hidden}
-img{display:block;max-width:100%}a{text-decoration:none;color:inherit}button{font:inherit}.shell{width:min(1480px,calc(100% - 42px));margin-inline:auto}
-.skip-link{position:fixed;left:12px;top:-60px;background:#fff;color:#000;padding:9px 12px;z-index:9999;border-radius:7px}.skip-link:focus{top:12px}
-.space{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden;background:radial-gradient(circle at 60% 8%,rgba(4,86,175,.13),transparent 28%),linear-gradient(180deg,#010712,#030e1d 72%,#020914)}
-.starfield{position:absolute;inset:-20%;background-repeat:repeat;opacity:.5}
-.starfield-a{background-image:radial-gradient(circle,#fff 0 1px,transparent 1.3px);background-size:92px 92px;mask-image:linear-gradient(#000,transparent 82%);animation:driftA 70s linear infinite}
-.starfield-b{background-image:radial-gradient(circle,var(--cyan) 0 1px,transparent 1.2px);background-size:163px 163px;opacity:.22;animation:driftB 95s linear infinite}
-.nebula{position:absolute;width:720px;height:720px;border-radius:50%;filter:blur(110px);opacity:.16}.nebula-a{top:-260px;right:-100px;background:#0b74ff}.nebula-b{left:-260px;top:35%;background:#5d2cff;opacity:.09}
-.planet-glow{position:absolute;width:760px;height:760px;border-radius:50%;right:23%;top:30px;background:radial-gradient(circle at 45% 45%,rgba(32,138,255,.16),rgba(4,36,78,.08) 45%,transparent 68%);border:1px solid rgba(39,145,220,.07);box-shadow:0 0 160px rgba(0,104,255,.08)}
-@keyframes driftA{to{transform:translate3d(-92px,-92px,0)}}@keyframes driftB{to{transform:translate3d(163px,-163px,0)}}
 
-.site-header{height:78px;position:sticky;top:0;z-index:50;background:rgba(1,7,18,.75);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.header-inner{height:100%;display:flex;align-items:center;gap:30px}.brand{display:flex;flex-direction:column;line-height:.86;min-width:245px}.brand-main{font-size:35px;font-weight:850;letter-spacing:-.055em}.brand-main span,.footer-brand span{color:var(--cyan)}.brand-os{font-size:18px;font-weight:800;letter-spacing:.31em;color:var(--cyan);margin-top:8px}.brand small{font-size:7px;font-weight:800;letter-spacing:.16em;color:#6f8da9;margin-top:7px}.main-nav{margin-left:auto;display:flex;gap:28px}.main-nav a{font-size:13px;color:#9db3c9;font-weight:650}.main-nav a:hover{color:#fff}.menu-toggle{display:none;margin-left:auto;background:none;border:0;padding:8px}.menu-toggle span{display:block;width:25px;height:2px;background:#fff;margin:5px 0}
+* {
+  box-sizing: border-box;
+}
 
-.hero{min-height:650px;display:grid;grid-template-columns:.9fr .8fr 1.25fr;gap:24px;align-items:center;padding:34px 0 22px;position:relative}
-.eyebrow,.kicker{font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--cyan)}.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green);margin-right:8px;animation:pulse 1.8s ease-in-out infinite}
-.hero-copy h1{font-size:clamp(66px,6.4vw,110px);line-height:.82;letter-spacing:-.065em;margin:24px 0 20px}.hero-copy h1 span{color:#fff}.hero-copy h2{font-size:13px;letter-spacing:.24em;color:#52d6ff;margin:0 0 20px}.hero-copy p{color:#abc0d5;font-size:17px;line-height:1.68;max-width:590px}.hero-actions{display:flex;gap:12px;margin-top:27px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:10px;font-weight:800;font-size:13px;border:1px solid transparent}.btn-primary{background:linear-gradient(90deg,var(--cyan2),var(--violet));box-shadow:0 12px 38px rgba(0,124,255,.25)}.btn-ghost{background:rgba(5,21,39,.55);border-color:var(--line2);color:#c5e2f4}.btn:hover{transform:translateY(-1px)}.hero-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:25px}.hero-tags span,.case-pills span{font-size:10px;font-weight:750;color:#7fa6c8;border:1px solid rgba(48,127,190,.28);padding:7px 9px;border-radius:7px;background:rgba(4,17,31,.5)}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--head);
+}
 
-.hero-chappi{height:590px;position:relative;display:flex;align-items:flex-end;justify-content:center}.hero-chappi img{height:560px;position:relative;z-index:3;filter:drop-shadow(0 35px 65px rgba(0,100,210,.36));animation:float 6s ease-in-out infinite}.orbit{position:absolute;border:1px solid rgba(37,172,255,.15);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}.orbit-one{width:520px;height:520px}.orbit-two{width:390px;height:390px;border-color:rgba(115,75,255,.14)}.holo-floor{position:absolute;bottom:22px;width:330px;height:82px;border-radius:50%;border:1px solid rgba(23,209,255,.42);box-shadow:0 0 35px rgba(0,194,255,.16),inset 0 0 34px rgba(0,194,255,.1);transform:perspective(280px) rotateX(68deg)}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
 
-.tech-panel{background:linear-gradient(180deg,rgba(7,25,46,.88),rgba(3,13,26,.92));border:1px solid var(--line2);border-radius:17px;box-shadow:var(--shadow),inset 0 0 45px rgba(0,108,205,.035);backdrop-filter:blur(14px)}
-.hero-dashboard{padding:14px}.panel-topline{display:flex;align-items:center;justify-content:space-between;padding:4px 4px 12px;border-bottom:1px solid rgba(54,130,190,.24)}.panel-topline div{display:flex;flex-direction:column}.panel-topline strong{font-size:15px}.panel-topline span{font-size:9px;color:#7698b5}.status-pill{display:inline-flex!important;align-items:center;flex-direction:row!important;gap:6px;padding:6px 9px;border-radius:999px;border:1px solid rgba(60,225,167,.28);background:rgba(60,225,167,.07);color:#65edba!important;font-size:8px!important;font-weight:800}.status-pill i{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}.dashboard-real{width:100%;height:auto;margin:13px auto 10px;border-radius:10px;border:1px solid rgba(52,123,181,.24)}.panel-foot{text-align:center;font-size:9px;letter-spacing:.08em;color:#617f9c}
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
 
-.system-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;padding:12px;border:1px solid var(--line);border-radius:17px;background:rgba(3,14,27,.72);box-shadow:0 18px 65px rgba(0,0,0,.24)}.mini-card{display:flex;gap:12px;align-items:flex-start;padding:16px;border-right:1px solid rgba(42,116,174,.18)}.mini-card:last-child{border-right:0}.mini-card .icon{color:var(--cyan);font-size:18px}.mini-card h3{margin:0 0 5px;font-size:15px;color:#dff5ff}.mini-card p{margin:0;color:#7896b2;font-size:11px;line-height:1.45}
+button {
+  font: inherit;
+}
 
-.section{padding:86px 0}.section-heading{display:grid;grid-template-columns:1fr .55fr;gap:35px;align-items:end;margin-bottom:28px}.section-heading h2,.case-copy h2,.chappi-copy h2,.open-inner h2{font-size:clamp(35px,4vw,56px);line-height:1.02;letter-spacing:-.045em;margin:8px 0 0}.section-heading p,.case-copy p,.chappi-copy p,.open-inner p{color:#93aec7;line-height:1.7;margin:0}
+.container {
+  width: 100%;
+  max-width: var(--max-container);
+  margin: auto;
+  padding: 0 40px;
+}
 
-.ui-showcase{overflow:hidden}.ui-tabs{padding:12px;display:flex;gap:8px;border-bottom:1px solid var(--line)}.ui-tab{background:transparent;border:1px solid transparent;color:#7fa1bf;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:750}.ui-tab.active{color:#fff;background:#0d3459;border-color:#1c639a}.ui-stage{min-height:520px;padding:20px;display:flex;align-items:flex-start;justify-content:center;background:radial-gradient(circle at 50% 15%,rgba(30,102,176,.1),transparent 60%)}.ui-shot{display:none;width:auto;max-width:100%;height:auto;border:1px solid rgba(48,119,178,.3);border-radius:10px;box-shadow:0 22px 65px rgba(0,0,0,.32)}.ui-shot.active{display:block}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 60px;
+}
 
-.hardware-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}.hardware-card{display:grid;grid-template-columns:250px 1fr;gap:26px;align-items:center;padding:28px}.hardware-photo{height:220px;border:1px solid rgba(45,116,178,.22);border-radius:14px;background:radial-gradient(circle,rgba(0,163,255,.12),rgba(2,10,20,.65) 70%);display:flex;align-items:center;justify-content:center;padding:18px}.hardware-photo img{max-height:185px;width:auto;filter:drop-shadow(0 20px 28px rgba(0,0,0,.42))}.hardware-card h3{font-size:27px;margin:9px 0}.hardware-card p{color:#8ea9c2;line-height:1.65}.chip-label{display:inline-block;font-size:9px;font-weight:850;letter-spacing:.12em;color:var(--cyan);border:1px solid rgba(22,213,255,.35);padding:5px 7px;border-radius:6px}.chip-label.purple{color:#ad98ff;border-color:rgba(115,75,255,.42)}
+.muted {
+    color: var(--muted);
+}
 
-.case-section{display:grid;grid-template-columns:.75fr 1.25fr;gap:32px;align-items:center}.case-copy p{margin-top:17px}.case-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.case-photo{overflow:hidden}.case-photo img{width:100%;height:auto}
+/* Site Header */
+.site-header {
+  position: fixed;
+  z-index: 100;
+  inset: 0 0 auto;
+  height: var(--head);
+  background: rgba(2, 8, 18, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+}
 
-.chappi-section{display:grid;grid-template-columns:1fr .72fr;gap:36px;align-items:center}.chappi-copy p{margin-top:17px;font-size:17px}.chappi-copy blockquote{margin:24px 0 0;padding:15px 18px;border-left:3px solid var(--cyan);background:rgba(11,46,78,.28);color:#c4ddf0;font-style:italic}.chappi-card{position:relative;overflow:hidden;min-height:530px;display:flex;align-items:flex-end;justify-content:center}.chappi-card img{height:510px;position:relative;z-index:2;filter:drop-shadow(0 25px 55px rgba(0,106,210,.36))}.chappi-glow{position:absolute;width:430px;height:430px;border-radius:50%;background:radial-gradient(circle,rgba(0,143,255,.22),transparent 68%);bottom:20px}
+.header-inner {
+  height: 100%;
+  max-width: var(--max);
+  margin: auto;
+  padding: 0 30px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
 
-.open-inner{padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px}.open-inner p{max-width:820px;margin-top:12px}.disabled{opacity:.6;pointer-events:none}
+.brand img {
+  display: block;
+  width: 210px;
+  max-height: 60px;
+  object-fit: contain;
+}
 
-footer{border-top:1px solid var(--line);background:rgba(1,7,16,.8);padding:27px 0 34px}.footer-inner{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:end;color:#6786a4;font-size:10px}.footer-center{text-align:center}.footer-inner>div:last-child{text-align:right;letter-spacing:.18em}.footer-brand{display:flex;flex-direction:column}.footer-brand strong{font-size:18px;color:#d9ecfa}.footer-brand small{margin-top:5px;letter-spacing:.12em}
+.main-nav {
+  display: flex;
+  gap: 52px;
+  font-weight: 700;
+  font-size: 15px;
+}
 
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-@media (max-width:1180px){.hero{grid-template-columns:1fr 1fr}.hero-dashboard{grid-column:1/-1;max-width:900px;margin:auto}.system-strip{grid-template-columns:repeat(3,1fr)}.hardware-card{grid-template-columns:190px 1fr}.main-nav{gap:18px}}
-@media (max-width:820px){.site-header{height:72px}.brand{min-width:0}.brand-main{font-size:29px}.brand-os{font-size:14px}.brand small{display:none}.menu-toggle{display:block}.main-nav{display:none;position:absolute;left:0;right:0;top:72px;padding:20px;background:#030c18;border-bottom:1px solid var(--line);flex-direction:column}.main-nav.open{display:flex}.hero{grid-template-columns:1fr;padding-top:30px}.hero-copy{text-align:center}.hero-copy p{margin-inline:auto}.hero-actions,.hero-tags{justify-content:center}.hero-chappi{height:510px}.hero-chappi img{height:490px}.system-strip{grid-template-columns:1fr 1fr}.section-heading,.case-section,.chappi-section{grid-template-columns:1fr}.hardware-grid{grid-template-columns:1fr}.ui-stage{min-height:auto}.open-inner{flex-direction:column;align-items:flex-start}.footer-inner{grid-template-columns:1fr;text-align:left!important;gap:11px}.footer-center,.footer-inner>div:last-child{text-align:left}.section{padding:68px 0}}
-@media (max-width:540px){.shell{width:min(100% - 22px,1480px)}.hero-copy h1{font-size:61px}.hero-chappi{height:430px}.hero-chappi img{height:410px}.system-strip{grid-template-columns:1fr}.mini-card{border-right:0;border-bottom:1px solid rgba(42,116,174,.18)}.hardware-card{grid-template-columns:1fr}.hardware-photo{height:200px}.ui-tabs{overflow:auto}.ui-tab{white-space:nowrap}.chappi-card{min-height:430px}.chappi-card img{height:415px}.open-inner{padding:28px 24px}}
-@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.starfield{transform:none!important}}
+.main-nav a {
+  padding: 10px 0;
+  color: #cddff3;
+}
+
+.main-nav a:hover,
+.main-nav a[href="#home"].active {
+  color: var(--cyan);
+}
+
+.languages {
+  justify-self: end;
+  border: 1px solid #24425d;
+  border-radius: 999px;
+  padding: 4px;
+}
+
+.languages button {
+  border: 0;
+  background: transparent;
+  color: #9cabba;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.languages button.active,
+.languages button:hover {
+  background: rgba(8, 124, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding-top: calc(var(--head) + 60px);
+  padding-bottom: 160px;
+  overflow: hidden;
+}
+
+.hero-bg-elements,
+.section-bg-elements {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  background: url('assets/stars.png') center/cover;
+}
+
+.earth {
+  position: absolute;
+  z-index: 1;
+  width: 1000px;
+  height: 1000px;
+  right: -250px;
+  top: -200px;
+  background: url('https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/3/324350main_11_full-1.jpg?crop=faces%2Cfocalpoint&fit=clip&h=1410&w=1880') center/cover no-repeat;
+  filter: drop-shadow(0 0 100px rgba(0, 166, 255, 0.4));
+}
+
+.lunar-ground {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 250px;
+  background: linear-gradient(180deg, rgba(2,8,18,0) 0%, rgba(2,8,18,.22) 30%, rgba(2,8,18,.88) 100%), url('https://assets.science.nasa.gov/dynamicimage/assets/science/psd/lunar-science/2023/09/s2-1280.jpg?crop=faces%2Cfocalpoint&fit=clip&h=720&w=1280') center 62%/cover no-repeat;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 5;
+  grid-template-columns: 55% 45%;
+}
+
+.eyebrow,
+.section-label {
+  margin: 0 0 16px;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  font-weight: 900;
+  color: #7d93aa;
+}
+
+.hero h1 {
+  margin: 18px 0 28px;
+  font-size: 78px;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-weight: 900;
+}
+
+.hero h1 strong {
+  color: var(--blue);
+}
+
+.hero h2 {
+  margin: 0 0 24px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.hero-text {
+  max-width: 680px;
+  color: #c9d5e2;
+  font-size: 20px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+  padding: 16px 36px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 17px;
+  transition: all 0.2s ease;
+}
+
+.primary-btn {
+  background: var(--blue-grad);
+  border: 0;
+}
+
+.primary-btn .arrow {
+  font-size: 20px;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+}
+
+.hero-character {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chappi-main {
+  width: auto;
+  height: min(850px, 85vh);
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 25px 35px rgba(0,0,0,0.4));
+}
+
+.signature {
+  position: absolute;
+  z-index: 6;
+  right: -60px;
+  top: 50%;
+  font-family: 'Segoe Script', cursive;
+  font-size: 26px;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  line-height: 1.2;
+}
+
+.signature .paw {
+  color: #fff;
+  font-size: 1.3em;
+  vertical-align: middle;
+}
+
+.sub-signature {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 6px;
+}
+
+.scroll-down {
+  position: absolute;
+  z-index: 8;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #bacddf;
+}
+
+.scroll-icon {
+  width: 24px;
+  height: 40px;
+  border: 2px solid #5a7490;
+  border-radius: 999px;
+  position: relative;
+}
+
+.scroll-icon::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 8px;
+  background: #bacddf;
+  border-radius: 999px;
+  animation: scroll-dot 1.5s ease-out infinite;
+}
+
+@keyframes scroll-dot {
+  0% { transform: translate(-50%, 0); opacity: 0.8; }
+  100% { transform: translate(-50%, 15px); opacity: 0.1; }
+}
+
+/* Feature Strip */
+.feature-strip {
+  position: relative;
+  z-index: 10;
+  margin-top: -80px;
+  margin-bottom: 80px;
+}
+
+.feature-strip-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid #1c3d5e;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(4, 18, 31, 0.96);
+    backdrop-filter: blur(10px);
+}
+
+.feature-strip article {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 34px 40px;
+  border-right: 1px solid #173b57;
+}
+
+.feature-strip article:last-child {
+  border: 0;
+}
+
+.icon-wrap {
+  width: 78px;
+  height: 78px;
+  flex: 0 0 78px;
+  border: 1px solid #28547b;
+  border-radius: 20px;
+  background: #081a2d;
+  display: grid;
+  place-items: center;
+}
+
+.icon-wrap img {
+    width: 38px;
+    height: 38px;
+}
+
+.feature-strip h3 {
+  margin: 0 0 7px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.feature-strip p {
+  margin: 0;
+  color: #afbfd1;
+  font-size: 16px;
+}
+
+/* Common Section */
+.section {
+  position: relative;
+  min-height: 800px;
+  background: var(--bg-section);
+  border-top: 1px solid var(--line);
+  padding: 140px 0;
+  overflow: hidden;
+}
+
+.section h2 {
+  font-size: 60px;
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  font-weight: 900;
+  margin: 0 0 26px;
+}
+
+.section h2 em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+.section-copy > p:not(.section-label) {
+  max-width: 780px;
+  color: #bacdda;
+  font-size: 20px;
+  line-height: 1.65;
+}
+
+.grid-principles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.grid-principles div {
+    text-align: center;
+}
+
+.grid-principles div .icon {
+    display: block;
+    color: var(--cyan);
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.principles span {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.opacity-low {
+    opacity: 0.3;
+}
+
+/* About Section */
+.about-section {
+    background: radial-gradient(circle at -15% 45%, rgba(0, 136, 255, 0.22), transparent 40%), var(--bg-section);
+}
+
+.about-chappi-wrap {
+    position: absolute;
+    left: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.about-chappi {
+    height: min(750px, 85%);
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(0, 140, 255, 0.15));
+}
+
+.about-copy {
+    padding-left: 50px;
+}
+
+/* Missions Section */
+.missions-section {
+    background: radial-gradient(circle at 110% 45%, rgba(0, 136, 255, 0.2), transparent 40%), var(--bg);
+}
+
+.missions-visual-wrap {
+    position: absolute;
+    right: -120px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.missions-device {
+    height: min(780px, 85%);
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+}
+
+.missions-copy {
+    padding-right: 60px;
+}
+
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 36px 0 40px;
+}
+
+.check-list li {
+  margin: 16px 0;
+  color: #cadbee;
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.check-list li::before {
+  content: '✓';
+  color: var(--cyan);
+  font-weight: 900;
+  font-size: 1.1em;
+}
+
+/* Contact Section */
+.contact-section {
+  background: var(--bg);
+  padding: 160px 0;
+}
+
+.contact-section .stars {
+    opacity: 0.6;
+}
+
+.radio-dish {
+  position: absolute;
+  right: -100px;
+  bottom: -60px;
+  width: 650px;
+  height: 650px;
+  background: linear-gradient(rgba(2,8,18,.18),rgba(2,8,18,.58)), url('https://assets.science.nasa.gov/dynamicimage/assets/science/psd/mars/downloadable_items/3/9/39262_spacecraft-antenna-goldstone-deep-space-complex-pia17792.jpg?crop=faces%2Cfocalpoint&fit=clip&h=3456&w=5184') center/cover no-repeat;
+  opacity: 0.4;
+}
+
+.contact-copy {
+  padding-right: 60px;
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid #45d7ff;
+  font-size: 16px;
+}
+
+.secondary-btn:hover {
+    background: rgba(0, 224, 255, 0.1);
+}
+
+.right-align-sig {
+    right: auto;
+    left: auto;
+    top: auto;
+    transform: none;
+    position: relative;
+    text-align: right;
+    display: block;
+    margin-top: 100px;
+}
+
+/* Footer */
+.footer {
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  padding: 70px 0 60px;
+  color: #7d93aa;
+  font-size: 14px;
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 30px;
+}
+
+.footer-brand-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-brand img {
+  width: 190px;
+  max-height: 55px;
+  object-fit: contain;
+}
+
+.footer-extra-links {
+  display: flex;
+  gap: 14px;
+}
+
+.footer-extra-links a:hover {
+    color: #ffffff;
+}
+
+.footer-middle {
+    text-align: center;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 40px;
+  font-weight: 700;
+  justify-content: center;
+}
+
+.footer-nav a:hover {
+  color: var(--blue);
+}
+
+.footer-right {
+    text-align: right;
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 1280px) {
+    --max-container: 1080px;
+    --head: 88px;
+
+    .hero h1 { font-size: 64px; }
+    .hero h2 { font-size: 28px; }
+    .earth { width: 800px; height: 800px; right: -150px; }
+    .section h2 { font-size: 50px; }
+    .feature-strip article { padding: 28px 30px; }
+    .check-list li { font-size: 17px; }
+}
+
+@media (max-width: 1024px) {
+    .container { padding: 0 30px; }
+    .grid-2 { gap: 40px; }
+    .hero-bg-elements { position: relative; height: 60vh; width: 100%; top: 0; left: 0; display: none;}
+    .hero { min-height: auto; padding-top: var(--head); padding-bottom: 60px; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-copy { padding-bottom: 0; display: flex; flex-direction: column; align-items: center;}
+    .hero-text { max-width: 580px; font-size: 18px; margin-left: auto; margin-right: auto;}
+    .hero-character { min-height: 400px; margin-top: 50px; }
+    .chappi-main { height: 400px; }
+    .signature { top: auto; bottom: 0; right: 0; left: 0; font-size: 20px; transform: rotate(-5deg); padding: 20px;}
+    .signature p { color: white !important;}
+    .scroll-down { display: none; }
+
+    .feature-strip { margin-top: 20px; }
+    .feature-strip-inner { grid-template-columns: 1fr; border-radius: 12px;}
+    .feature-strip article { border-right: 0; border-bottom: 1px solid #173b57; }
+
+    .grid-principles { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .about-chappi-wrap { display: none; }
+    .about-copy { padding-left: 0; }
+    .empty-col { display: none; }
+
+    .reverse-on-mobile { direction: rtl; }
+    .reverse-on-mobile .section-copy { direction: ltr; }
+
+    .missions-visual-wrap { display: none; }
+    .missions-copy { padding-right: 0; }
+
+    .radio-dish { display: none; }
+    .contact-copy { padding-right: 0; text-align: center; align-items: center;}
+    .contact-copy .secondary-btn { margin-left: auto; margin-right: auto;}
+    .right-align-sig { text-align: center; margin-top: 50px; margin-left: auto; margin-right: auto;}
+    .contact-section { padding-bottom: 100px; }
+    .footer-inner { grid-template-columns: 1fr; text-align: center;}
+    .footer-brand-links, .footer-extra-links, .footer-nav { justify-content: center; align-items: center;}
+    .footer-brand img { margin: 0 auto; }
+    .footer-extra-links { margin-top: 10px; }
+    .footer-right { text-align: center; }
+
+}
+
+@media (max-width: 768px) {
+    --head: 70px;
+    .brand img { width: 170px; }
+    .main-nav, .languages { display: none; }
+    /* Adicionar um menu mobile hambúrguer se necessário */
+
+    .hero h1 { font-size: 48px; }
+    .hero h2 { font-size: 24px; }
+    .hero-text { font-size: 16px; }
+    .section h2 { font-size: 38px; }
+    .section h2 br { display: none; }
+    .icon-wrap { width: 60px; height: 60px; flex: 0 0 60px;}
+    .icon-wrap img { width: 28px; height: 28px; }
+    .feature-strip h3 { font-size: 16px; }
+    .feature-strip p { font-size: 14px; }
+}
+
+/* V4 integration fixes */
+@media (max-width: 1280px) {
+  :root { --max-container: 1080px; --head: 88px; }
+}
+@media (max-width: 768px) {
+  :root { --head: 70px; }
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(2,8,18,.08) 0%,rgba(2,8,18,0) 48%,rgba(2,8,18,.08) 100%);
+}
+
+.earth{
+  border-radius:50%;
+  overflow:hidden;
+  box-shadow:0 0 120px rgba(0,166,255,.32);
+}
+
+.lunar-ground{
+  filter:saturate(.72) brightness(.58) contrast(1.08) hue-rotate(175deg);
+  mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 100%);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 100%);
+}
+
+.hero-character{z-index:6}
+.chappi-main,.about-chappi,.missions-device{position:relative;z-index:6}
+
+.about-section{
+  min-height:760px;
+}
+.about-chappi-wrap{
+  width:48%;
+  left:-30px;
+  overflow:hidden;
+}
+.about-chappi{
+  height:min(790px,94%);
+  transform:translateY(45px);
+}
+.about-section .section-copy{
+  position:relative;
+  z-index:5;
+}
+
+.missions-section{
+  min-height:760px;
+}
+.missions-visual-wrap{
+  width:54%;
+  right:-30px;
+}
+.missions-device{
+  height:min(690px,82%);
+}
+.missions-screen{
+  position:absolute;
+  z-index:7;
+  right:8%;
+  top:50%;
+  transform:translateY(-50%) rotate(4deg);
+  width:min(460px,33vw);
+  padding:28px 30px;
+  border:1px solid #1d577f;
+  border-radius:20px;
+  background:rgba(2,16,29,.9);
+  box-shadow:0 28px 70px rgba(0,0,0,.48);
+  backdrop-filter:blur(10px);
+}
+.missions-screen h3{
+  margin:0 0 18px;
+  font-size:18px;
+  color:#d9e9f8;
+}
+.missions-screen div{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:15px 0;
+  border-top:1px solid #163c59;
+  color:#b9cbe0;
+}
+.missions-screen div:first-of-type{border-top:0}
+.missions-screen b{color:var(--cyan);font-size:20px}
+
+.contact-section{
+  min-height:700px;
+  overflow:hidden;
+}
+.radio-dish{
+  width:760px;
+  height:620px;
+  right:-90px;
+  bottom:-30px;
+  opacity:.46;
+  border-radius:55% 0 0 0;
+  filter:saturate(.55) brightness(.5) contrast(1.08) hue-rotate(175deg);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 28%,#000 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 28%,#000 100%);
+}
+
+.signature{
+  font-family:"Segoe Script","Brush Script MT",cursive;
+}
+
+@media (max-width:1024px){
+  .earth{display:none}
+  .hero-bg-elements{display:block;height:auto;position:absolute}
+  .stars{display:block}
+  .lunar-ground{display:block;height:180px}
+  .missions-screen{display:none}
+}
+
+
+/* =========================================================
+   V5 STRUCTURAL LAYOUT FIX
+   Central container + Grid/Flex flow for all foreground media
+   ========================================================= */
+
+.container{
+  width:100%;
+  max-width:1280px;
+  margin:0 auto;
+  padding-left:32px;
+  padding-right:32px;
+}
+
+/* HERO: text and Chappi are now in normal grid flow.
+   Only decorative background layers stay absolute. */
+.hero{
+  min-height:780px;
+  padding-top:calc(var(--head) + 40px);
+  padding-bottom:180px;
+}
+
+.hero-wrapper{
+  position:relative;
+  z-index:5;
+  min-height:620px;
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);
+  gap:56px;
+  align-items:center;
+}
+
+.hero-copy{
+  min-width:0;
+}
+
+.hero-character{
+  position:relative;
+  min-width:0;
+  height:auto;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.chappi-main{
+  display:block;
+  width:min(100%,500px);
+  height:auto;
+  max-height:610px;
+  object-fit:contain;
+}
+
+.signature{
+  right:0;
+  top:auto;
+  bottom:80px;
+  max-width:230px;
+  font-size:24px;
+}
+
+.earth{
+  width:min(760px,52vw);
+  height:min(760px,52vw);
+  right:-110px;
+  top:-105px;
+}
+
+.lunar-ground{
+  height:210px;
+}
+
+/* Keep the feature strip centered at every zoom */
+.feature-strip{
+  margin-top:-70px;
+  margin-bottom:0;
+}
+
+.feature-strip .container{
+  max-width:1280px;
+}
+
+/* COMMON CONTENT SECTIONS */
+.section{
+  min-height:680px;
+  padding:100px 0;
+}
+
+.section-grid{
+  display:grid;
+  align-items:center;
+  gap:72px;
+}
+
+.section-grid--about{
+  grid-template-columns:minmax(360px,.9fr) minmax(0,1.1fr);
+}
+
+.section-grid--missions{
+  grid-template-columns:minmax(0,1fr) minmax(420px,1fr);
+}
+
+.section-media{
+  position:relative;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.about-media{
+  align-self:stretch;
+  overflow:hidden;
+  justify-content:flex-start;
+}
+
+.about-chappi{
+  position:relative;
+  display:block;
+  width:min(100%,560px);
+  height:auto;
+  max-height:660px;
+  object-fit:contain;
+  object-position:center bottom;
+  transform:none;
+}
+
+.about-copy,
+.missions-copy{
+  padding:0;
+}
+
+/* Missions: Chappi + panel are bound to the same grid cell.
+   No viewport-level absolute positioning. */
+.missions-media{
+  min-height:540px;
+  justify-content:flex-start;
+}
+
+.missions-device{
+  position:relative;
+  z-index:2;
+  display:block;
+  width:min(100%,420px);
+  height:auto;
+  max-height:570px;
+  object-fit:contain;
+}
+
+.missions-screen{
+  position:absolute;
+  z-index:3;
+  width:min(410px,80%);
+  right:0;
+  top:50%;
+  transform:translateY(-42%) rotate(3deg);
+  padding:24px 26px;
+}
+
+/* Contact remains a normal centered two-column section.
+   Dish is decorative background only. */
+.contact-section .container{
+  position:relative;
+  z-index:4;
+}
+
+.contact-copy{
+  padding-right:0;
+}
+
+/* --------- RESPONSIVE --------- */
+@media (max-width:1280px){
+  .container{max-width:1120px;padding-left:28px;padding-right:28px}
+  .hero-wrapper{grid-template-columns:minmax(0,1fr) minmax(320px,.8fr);gap:36px}
+  .hero h1{font-size:64px}
+  .earth{width:650px;height:650px;right:-180px}
+  .signature{right:-5px;bottom:70px;font-size:21px}
+}
+
+@media (max-width:1024px){
+  .container{max-width:920px}
+  .hero-wrapper{
+    grid-template-columns:1fr;
+    gap:28px;
+    text-align:center;
+  }
+  .hero-copy{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .hero-character{min-height:460px}
+  .chappi-main{max-height:470px;width:auto;max-width:100%}
+  .signature{
+    position:absolute;
+    left:50%;
+    right:auto;
+    bottom:16px;
+    transform:translateX(-50%);
+    max-width:none;
+    width:100%;
+  }
+  .earth{
+    display:block;
+    width:680px;height:680px;
+    right:50%;top:450px;
+    transform:translateX(64%);
+    opacity:.6;
+  }
+  .lunar-ground{height:170px}
+
+  .section-grid--about,
+  .section-grid--missions{
+    grid-template-columns:1fr;
+    gap:42px;
+  }
+  .about-media{
+    max-height:440px;
+    justify-content:center;
+  }
+  .about-chappi{max-height:520px;width:auto;max-width:100%}
+  .missions-media{min-height:520px}
+  .missions-device{max-height:500px}
+  .missions-screen{width:min(400px,72%)}
+}
+
+@media (max-width:768px){
+  .container{padding-left:20px;padding-right:20px}
+  .hero{min-height:auto;padding-top:calc(var(--head) + 36px);padding-bottom:150px}
+  .hero h1{font-size:48px}
+  .hero h2{font-size:24px}
+  .hero-text{font-size:16px}
+  .hero-character{min-height:390px}
+  .chappi-main{max-height:400px}
+  .earth{width:560px;height:560px;top:430px;opacity:.48}
+  .feature-strip{margin-top:-40px}
+  .section{min-height:auto;padding:76px 0}
+  .section h2{font-size:38px}
+  .section-grid{gap:30px}
+  .about-media{max-height:360px}
+  .about-chappi{max-height:430px}
+  .missions-media{min-height:430px}
+  .missions-device{max-height:420px}
+  .missions-screen{
+    width:min(330px,74%);
+    padding:18px 20px;
+    right:0;
+  }
+}
+
+
+/* =========================================================
+   V5.1 — composition corrections
+   1) Hero signature no longer sits on top of Chappi
+   2) Missions panel no longer covers Chappi
+   3) Contact signature gets its missing supporting line
+   ========================================================= */
+
+/* HOME */
+.hero-character{
+  padding-right:150px;
+}
+
+.hero-character .signature{
+  right:0;
+  bottom:105px;
+  top:auto;
+  width:220px;
+  max-width:220px;
+  text-align:left;
+  line-height:1.18;
+  transform:rotate(-4deg);
+  pointer-events:none;
+}
+
+.hero-character .sub-signature{
+  margin-top:8px;
+  font-size:17px;
+  line-height:1.25;
+}
+
+/* MISSIONS */
+.missions-media{
+  display:grid;
+  grid-template-columns:minmax(250px, .9fr) minmax(300px, 1.1fr);
+  gap:24px;
+  align-items:center;
+  justify-content:stretch;
+}
+
+.missions-device{
+  justify-self:end;
+  width:min(100%,360px);
+  max-height:520px;
+}
+
+.missions-screen{
+  position:relative;
+  right:auto;
+  top:auto;
+  transform:rotate(3deg);
+  width:100%;
+  max-width:400px;
+  justify-self:start;
+}
+
+/* CONTACT */
+.right-align-sig{
+  position:relative;
+  margin-top:0;
+  text-align:right;
+  font-size:28px;
+  color:#fff;
+}
+
+.contact-sub{
+  margin-top:12px;
+  color:rgba(255,255,255,.62);
+  font-size:18px;
+  line-height:1.45;
+}
+
+/* Mid-size screens */
+@media (max-width:1280px){
+  .hero-character{padding-right:110px}
+  .hero-character .signature{
+    width:185px;
+    max-width:185px;
+    font-size:20px;
+    bottom:90px;
+  }
+  .hero-character .sub-signature{font-size:15px}
+  .missions-media{
+    grid-template-columns:minmax(220px,.9fr) minmax(260px,1.1fr);
+    gap:18px;
+  }
+  .missions-device{max-height:470px}
+  .missions-screen{max-width:350px}
+}
+
+/* Tablet / mobile: stack cleanly instead of overlapping */
+@media (max-width:1024px){
+  .hero-character{
+    padding-right:0;
+    padding-bottom:74px;
+  }
+  .hero-character .signature{
+    left:50%;
+    right:auto;
+    bottom:10px;
+    width:auto;
+    max-width:none;
+    text-align:center;
+    transform:translateX(-50%) rotate(-3deg);
+    white-space:nowrap;
+  }
+
+  .missions-media{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+  .missions-device{
+    justify-self:center;
+    max-height:430px;
+  }
+  .missions-screen{
+    justify-self:center;
+    max-width:430px;
+    transform:none;
+  }
+
+  .right-align-sig{
+    text-align:center;
+    margin-top:30px;
+  }
+}
+
+@media (max-width:768px){
+  .hero-character .signature{
+    white-space:normal;
+    width:260px;
+  }
+  .missions-device{max-height:380px}
+  .missions-screen{max-width:100%}
+  .contact-sub{font-size:16px}
+}
+
+
+/* =========================================================
+   V5.2 — Mascot structure correction
+   HOME: image + caption same wrapper
+   MISSIONS: 3 explicit columns (text | Chappi | panel)
+   CONTACT: real Chappi + caption, no orphan signature
+   ========================================================= */
+
+.mascot-wrapper{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+}
+
+.mascot-img{
+  display:block;
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+}
+
+.mascot-caption{
+  margin-top:10px;
+  text-align:center;
+  line-height:1.2;
+  color:#fff;
+  pointer-events:none;
+}
+
+.mascot-caption .name{
+  display:block;
+  font-family:"Segoe Script","Brush Script MT",cursive;
+  font-size:26px;
+}
+
+.mascot-caption .subtext{
+  display:block;
+  margin-top:6px;
+  color:rgba(255,255,255,.72);
+  font-family:"Segoe Script","Brush Script MT",cursive;
+  font-size:18px;
+  line-height:1.3;
+}
+
+/* HOME */
+.hero-character{
+  padding-right:0 !important;
+}
+
+.hero-mascot{
+  width:100%;
+  max-width:520px;
+  margin:0 auto;
+}
+
+.hero-mascot .chappi-main{
+  width:auto;
+  max-width:100%;
+  max-height:590px;
+}
+
+.hero-mascot .mascot-caption{
+  margin-top:-8px;
+  transform:rotate(-3deg);
+}
+
+/* neutralize legacy absolute signature behavior */
+.hero-character .signature,
+.signature{
+  position:static;
+  inset:auto;
+  transform:none;
+  width:auto;
+  max-width:none;
+  text-align:inherit;
+}
+
+/* MISSIONS */
+.missions-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(260px,.72fr) minmax(320px,.88fr);
+  gap:34px;
+  align-items:center;
+}
+
+.missions-copy{
+  min-width:0;
+}
+
+.missions-mascot{
+  justify-self:center;
+  width:100%;
+  max-width:330px;
+}
+
+.missions-device{
+  width:auto;
+  max-width:100%;
+  max-height:520px;
+  justify-self:center;
+}
+
+.missions-screen{
+  position:relative !important;
+  inset:auto !important;
+  transform:rotate(2.5deg) !important;
+  width:100% !important;
+  max-width:390px !important;
+  justify-self:start;
+  z-index:1;
+}
+
+/* CONTACT */
+.contact-layout{
+  position:relative;
+  z-index:4;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(320px,.8fr);
+  gap:70px;
+  align-items:center;
+}
+
+.contact-copy{
+  min-width:0;
+}
+
+.contact-mascot{
+  justify-self:end;
+  width:100%;
+  max-width:420px;
+}
+
+.contact-chappi{
+  width:auto;
+  max-width:100%;
+  max-height:500px;
+}
+
+.contact-mascot .mascot-caption{
+  margin-top:8px;
+  transform:rotate(-3deg);
+}
+
+.contact-sub{
+  font-size:17px !important;
+  color:rgba(255,255,255,.66) !important;
+}
+
+/* Keep dish decorative and behind actual content */
+.radio-dish{
+  z-index:0;
+}
+
+/* RESPONSIVE */
+@media (max-width:1180px){
+  .missions-layout{
+    grid-template-columns:minmax(0,1fr) minmax(220px,.65fr) minmax(280px,.85fr);
+    gap:24px;
+  }
+  .missions-device{max-height:470px}
+  .missions-screen{max-width:340px !important}
+
+  .contact-layout{
+    grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);
+    gap:44px;
+  }
+  .contact-chappi{max-height:460px}
+}
+
+@media (max-width:980px){
+  .missions-layout{
+    grid-template-columns:1fr;
+    text-align:left;
+  }
+  .missions-mascot{
+    max-width:320px;
+  }
+  .missions-screen{
+    justify-self:center;
+    transform:none !important;
+    max-width:440px !important;
+  }
+
+  .contact-layout{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+  .contact-copy{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .contact-mascot{
+    justify-self:center;
+    max-width:360px;
+  }
+}
+
+@media (max-width:768px){
+  .hero-mascot{max-width:360px}
+  .hero-mascot .chappi-main{max-height:420px}
+  .mascot-caption .name{font-size:23px}
+  .mascot-caption .subtext{font-size:16px}
+
+  .missions-mascot{max-width:280px}
+  .missions-device{max-height:400px}
+  .missions-screen{max-width:100% !important}
+
+  .contact-mascot{max-width:300px}
+  .contact-chappi{max-height:390px}
+}
